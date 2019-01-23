@@ -26,5 +26,17 @@ public class PetController {
         return new ResponseEntity<>(pet, HttpStatus.FOUND);
     }
 
+    @PutMapping("pets/{id}")
+    public ResponseEntity<Pet> updatePet(@PathVariable Long id, @RequestBody Pet pet) throws ResourceNotFoundException{
+        petService.updatePet(id, pet);
+        return new ResponseEntity<>(pet, HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("pets/{id}")
+    public ResponseEntity<?> deletePet(@PathVariable Long id) throws ResourceNotFoundException{
+        petService.deletePet(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }

@@ -6,6 +6,8 @@ import com.github.vystartasv.PetDatabaseJava.model.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PetService {
 
@@ -30,5 +32,9 @@ public class PetService {
     public void deletePet(Long id) throws ResourceNotFoundException{
         Pet existingPet = getPetById(id);
         petRepository.delete(existingPet);
+    }
+
+    public List<Pet> getAllOwners(){
+        return petRepository.findAll();
     }
 }

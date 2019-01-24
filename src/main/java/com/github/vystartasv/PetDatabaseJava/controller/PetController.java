@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class PetController {
 
@@ -24,6 +26,11 @@ public class PetController {
     public ResponseEntity<Pet> getPet(@PathVariable Long id) throws ResourceNotFoundException {
         Pet pet = petService.getPetById(id);
         return new ResponseEntity<>(pet, HttpStatus.FOUND);
+    }
+
+    @GetMapping("pets")
+    public ResponseEntity<List<Pet>> getAllOwners() throws ResourceNotFoundException {
+        return new ResponseEntity<>(petService.getAllOwners(), HttpStatus.OK);
     }
 
     @PutMapping("pets/{id}")

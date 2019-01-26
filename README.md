@@ -1,2 +1,2 @@
 # Owner & Pet Spring REST Service
-### Applicatioserves as a pet owner and pet database
+### Application serves as a pet owner and pet database

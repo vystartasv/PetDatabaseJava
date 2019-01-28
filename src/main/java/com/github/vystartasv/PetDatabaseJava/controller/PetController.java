@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/pets")
+@RequestMapping("pets")
 public class PetController {
 
     @Autowired
     private PetService petService;
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<?> createPet(@RequestBody Pet pet){
         petService.createPet(pet);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -29,7 +29,7 @@ public class PetController {
         return new ResponseEntity<>(pet, HttpStatus.FOUND);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Pet>> getAllOwners() throws ResourceNotFoundException {
         return new ResponseEntity<>(petService.getAllOwners(), HttpStatus.OK);
     }

@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/owners")
+@RequestMapping("owners")
 public class OwnerController {
 
     @Autowired
     private OwnerService ownerService;
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<?> createOwner(@RequestBody Owner owner) throws ResourceNotFoundException{
         ownerService.createOwner(owner);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -29,7 +29,7 @@ public class OwnerController {
         return new ResponseEntity<>(owner, HttpStatus.FOUND);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Owner>> getAllOwners() throws ResourceNotFoundException {
         return new ResponseEntity<>(ownerService.getAllOwners(), HttpStatus.OK);
     }

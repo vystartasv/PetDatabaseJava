@@ -11,35 +11,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("api/pets")
 public class PetController {
 
     @Autowired
     private PetService petService;
 
-    @PostMapping("pets")
+    @PostMapping("/")
     public ResponseEntity<?> createPet(@RequestBody Pet pet){
         petService.createPet(pet);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("pets/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Pet> getPet(@PathVariable Long id) throws ResourceNotFoundException {
         Pet pet = petService.getPetById(id);
         return new ResponseEntity<>(pet, HttpStatus.FOUND);
     }
 
-    @GetMapping("pets")
+    @GetMapping("/")
     public ResponseEntity<List<Pet>> getAllOwners() throws ResourceNotFoundException {
         return new ResponseEntity<>(petService.getAllOwners(), HttpStatus.OK);
     }
 
-    @PutMapping("pets/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Pet> updatePet(@PathVariable Long id, @RequestBody Pet pet) throws ResourceNotFoundException{
         petService.updatePet(id, pet);
         return new ResponseEntity<>(pet, HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("pets/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePet(@PathVariable Long id) throws ResourceNotFoundException{
         petService.deletePet(id);
         return new ResponseEntity<>(HttpStatus.OK);
